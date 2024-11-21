@@ -15,52 +15,55 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
-class LoginScreen(private val modifier: Modifier = Modifier) : Screen {
+@Composable
+fun LoginScreen(modifier: Modifier = Modifier) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    val enabledButton by remember { mutableStateOf(checkLogin(email, password)) }
 
-    @Composable
-    override fun Content() {
-        var email by remember { mutableStateOf("") }
-        var password by remember { mutableStateOf("") }
-        var enabledButton by remember { mutableStateOf(checkLogin(email, password)) }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "Login"
+        )
 
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = email,
+            onValueChange = {
+                email = it
+            },
+            label = { Text("E-mail") })
+
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = password,
+            onValueChange = {
+                password = it
+            },
+            label = { Text("Senha") })
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {},
+            enabled = enabledButton
         ) {
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = "Login"
-            )
-
-            TextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = email,
-                onValueChange = {
-                    email = it
-                },
-                label = { Text("E-mail") })
-
-            TextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = password,
-                onValueChange = {
-                    password = it
-                },
-                label = { Text("Senha") })
-
-            Button(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = {},
-                enabled = enabledButton
-            ) {
-                Text(text = "Acessar")
-            }
+            Text(text = "Acessar")
         }
     }
+}
 
-    private fun checkLogin(email: String, password: String) =
-        email.trim().isNotEmpty() && password.trim().isNotEmpty()
+private fun checkLogin(email: String, password: String) =
+    email.trim().isNotEmpty() && password.trim().isNotEmpty()
+
+@Preview
+@Composable
+private fun LoginScreenPreview() {
+    LoginScreen()
 }

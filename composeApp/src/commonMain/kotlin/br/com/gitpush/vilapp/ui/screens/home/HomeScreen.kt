@@ -1,13 +1,10 @@
 package br.com.gitpush.vilapp.ui.screens.home
 
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import cafe.adriel.voyager.core.screen.Screen
+import androidx.compose.ui.Modifier
 
-class HomeScreen : Screen {
-
-    @Composable
-    override fun Content() {
-        TODO("Not yet implemented")
-    }
-
+@Composable
+fun HomeScreen(modifier: Modifier = Modifier) {
+    Text("Home")
 }
