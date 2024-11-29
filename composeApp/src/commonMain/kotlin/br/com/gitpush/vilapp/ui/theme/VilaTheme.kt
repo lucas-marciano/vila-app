@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.theme
+package br.com.gitpush.vilapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
@@ -6,7 +6,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 
-internal object VilaTheme {
+object VilaTheme {
 
     val colors: CustomColors
         @Composable
@@ -54,7 +54,7 @@ internal object VilaTheme {
         CompositionLocalProvider(
             LocalSpaces provides spaces,
             LocalShapes provides shapes,
-            LocalColors provides colorScheme,
+            LocalColors provides lightScheme,
             LocalTypography provides typography,
         ) {
             content()

@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.theme
+package br.com.gitpush.vilapp.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Immutable

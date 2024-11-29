@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.ui.navigation
+package br.com.gitpush.vilapp.core.domain
 
 internal enum class Routes {
     HOME_ROUTE,
