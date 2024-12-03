@@ -25,7 +25,13 @@ fun Navigator(
         modifier = modifier.fillMaxSize().padding(innerPadding)
     ) {
         composable(route = Routes.LOGIN_ROUTE.name) {
-            LoginScreenRoute()
+            LoginScreenRoute {
+                navController.navigate(it) {
+                    popUpTo(Routes.LOGIN_ROUTE.name) {
+                        inclusive = true
+                    }
+                }
+            }
         }
         composable(route = Routes.HOME_ROUTE.name) {
             HomeScreen()
