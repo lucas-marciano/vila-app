@@ -1,22 +1,19 @@
 package br.com.gitpush.vilapp.ui.components.buttons
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import br.com.gitpush.vilapp.ui.theme.VilaTheme
-
-private const val TIME_ANIMATION_DURATION = 3000
-private const val ALPHA = 0.5f
 
 @Composable
 fun MainButton(
@@ -24,66 +21,80 @@ fun MainButton(
     text: String,
     onClick: () -> Unit = {},
     enabled: Boolean = false,
-    loading: Boolean = false
 ) {
-
-//    val interactionSource = remember { MutableInteractionSource() }
-//    val isPressed by interactionSource.collectIsPressedAsState()
-//    val buttonColor by animateColorAsState(
-//        targetValue = if (isPressed) Color.Red else Color.Blue
-//    )
-//
-//    Box(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .clip(RoundedCornerShape(8.dp))
-//            .background(buttonColor)
-//            .clickable(
-//                interactionSource = interactionSource,
-//                indication = null
-//            ) { onClick() },
-//        contentAlignment = Alignment.Center
-//    ) {
-//        Text(
-//            modifier = Modifier.padding(vertical = 16.dp),
-//            text = text,
-//            style = VilaTheme.typography.button,
-//            color = VilaTheme.colors.onPrimary
-//        )
-//    }
-
-    val isEnabled by remember { mutableStateOf(enabled) }
-    val isLoading by remember { mutableStateOf(loading) }
-
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-    val animatedBgColor by animateColorAsState(
-        targetValue = if (isPressed) Color.Red else VilaTheme.colors.primary,
-        label = "bg color"
-    )
-    val animatedContentColor by animateColorAsState(
-        targetValue = if (isPressed) VilaTheme.colors.onPrimary.copy(.6f) else VilaTheme.colors.onPrimary,
-        label = "content color"
-    )
-
     Button(
-        modifier = modifier.fillMaxWidth(),
-        enabled = isEnabled,
-        onClick = { onClick() },
-        elevation = ButtonDefaults.elevation(),
-        interactionSource = interactionSource,
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = animatedBgColor,
-            contentColor = animatedContentColor,
-            disabledBackgroundColor = VilaTheme.colors.primary.copy(alpha = ALPHA),
-            disabledContentColor = VilaTheme.colors.onPrimary.copy(alpha = ALPHA)
-        ),
         shape = VilaTheme.shapes.medium,
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = 4.dp,
+            pressedElevation = 0.dp,
+        ),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = VilaTheme.colors.primary,
+            contentColor = VilaTheme.colors.onPrimary,
+            disabledContentColor = VilaTheme.colors.disable,
+            disabledContainerColor = VilaTheme.colors.onDisable
+        ),
+        enabled = enabled,
+        onClick = onClick,
+        modifier = modifier.fillMaxWidth()
     ) {
         Text(
+            modifier = Modifier.padding(vertical = 8.dp),
             text = text,
             style = VilaTheme.typography.button,
-            color = animatedContentColor
+            color = VilaTheme.colors.onPrimary
         )
+    }
+}
+
+@Composable
+fun LoadingButton(
+    text: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    enabled: Boolean = true,
+    loading: Boolean = false,
+) {
+    Button(
+        shape = VilaTheme.shapes.medium,
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = 4.dp,
+            pressedElevation = 0.dp,
+        ),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = VilaTheme.colors.primary,
+            contentColor = VilaTheme.colors.onPrimary,
+            disabledContentColor = VilaTheme.colors.disable,
+            disabledContainerColor = VilaTheme.colors.onDisable
+        ),
+        enabled = enabled,
+        onClick = {
+            if (!loading) onClick()
+        },
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+        ) {
+            AnimatedContent(
+                modifier = Modifier.padding(vertical = 8.dp),
+                targetState = loading
+            ) { showLoading ->
+                if (showLoading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(20.dp),
+                        strokeWidth = 2.dp,
+                        color = VilaTheme.colors.onPrimary
+                    )
+
+                } else {
+                    Text(
+                        text = text,
+                        style = VilaTheme.typography.button,
+                        color = VilaTheme.colors.onPrimary
+                    )
+                }
+            }
+        }
     }
 }

@@ -7,57 +7,63 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import br.com.gitpush.vilapp.ui.theme.VilaTheme
-import br.com.gitpush.vilapp.ui.components.buttons.MainButton
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import br.com.gitpush.vilapp.core.domain.Routes
+import br.com.gitpush.vilapp.ui.components.buttons.LoadingButton
 import br.com.gitpush.vilapp.ui.components.textfields.MainTextFieldEmail
 import br.com.gitpush.vilapp.ui.components.textfields.MainTextFieldPassword
-import br.com.gitpush.vilapp.ui.components.textfields.TextFieldInfoData
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.compose.getKoin
+import br.com.gitpush.vilapp.ui.theme.VilaTheme
+import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import vilapp.composeapp.generated.resources.Res
+import vilapp.composeapp.generated.resources.vila_app_forgot_pass_button
+import vilapp.composeapp.generated.resources.vila_app_login_button
+import vilapp.composeapp.generated.resources.vila_app_login_title
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
-    val viewModel: LoginViewModel = getKoin().get()
-    val state by viewModel.state.collectAsState()
+fun LoginScreenRoute(
+    viewModel: LoginViewModel = koinViewModel(),
+    onRedirectAction: (String) -> Unit = {}
+) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-    LoginContent(
-        modifier = modifier,
-        state = { state },
-        onEmailChange = {
-            viewModel.filedEmail.value = it
-        }, onPasswordChange = {
-            viewModel.filedPassword.value = it
-        },
-        onActionLogin = {
-            viewModel.login()
+    if (state.success) {
+        // salvar informacoes antes de ir para home
+        // usar algo pro token e pros dados dos cliente logado
+        onRedirectAction(Routes.HOME_ROUTE.name)
+    }
+
+    LoginScreen(
+        state = state,
+        onLoginAction = { action ->
+            when (action) {
+                is LoginActions.OnRedirectAction -> {
+                    onRedirectAction(action.route)
+                }
+
+                else -> Unit
+            }
+            viewModel.onAction(action)
         }
     )
 }
 
 @Composable
-fun LoginContent(
-    modifier: Modifier = Modifier,
-    onEmailChange: (String) -> Unit = {},
-    onPasswordChange: (String) -> Unit = {},
-    onActionLogin: () -> Unit = {},
-    state: () -> LoginUiState = { LoginUiState.Idle },
+fun LoginScreen(
+    state: LoginState,
+    onLoginAction: (LoginActions) -> Unit
 ) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    val enabledButton by remember { mutableStateOf(checkLogin(email, password)) }
-    val localState by remember { mutableStateOf(state()) }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
-        modifier = modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize()
             .background(VilaTheme.colors.background)
             .padding(VilaTheme.spaces.large),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -67,53 +73,48 @@ fun LoginContent(
         Text(
             modifier = Modifier.fillMaxWidth(),
             style = VilaTheme.typography.h1,
-            text = "Login"
+            text = stringResource(Res.string.vila_app_login_title)
         )
 
         Spacer(modifier = Modifier.padding(bottom = VilaTheme.spaces.medium))
 
         MainTextFieldEmail(
-            data = TextFieldInfoData(
-                value = email,
-                placeholder = "E-mail",
-                enabled = !localState.isLoading()
-            )
+            value = state.emailField,
+            hasError = state.errorMessage?.asString().orEmpty().isNotEmpty()
         ) {
-            email = it
-            onEmailChange(email)
+            onLoginAction(LoginActions.OnFilledEmail(it))
         }
 
         Spacer(modifier = Modifier.padding(bottom = VilaTheme.spaces.medium))
 
         MainTextFieldPassword(
-            data = TextFieldInfoData(
-                value = password,
-                placeholder = "Senha",
-                enabled = !localState.isLoading()
-            )
+            value = state.passwordField,
+            hasError = state.errorMessage?.asString().orEmpty().isNotEmpty()
         ) {
-            password = it
-            onPasswordChange(password)
+            onLoginAction(LoginActions.OnFilledPassword(it))
         }
 
         Spacer(modifier = Modifier.padding(bottom = VilaTheme.spaces.medium))
 
-        MainButton(
-            text = "Acessar",
-            onClick = onActionLogin,
-            enabled = enabledButton,
-            loading = localState.isLoading()
+        LoadingButton(
+            text = stringResource(Res.string.vila_app_login_button),
+            onClick = {
+                keyboardController?.hide()
+                onLoginAction(LoginActions.OnLoginAction)
+            },
+            loading = state.inLoading,
         )
+
+        Spacer(modifier = Modifier.padding(bottom = VilaTheme.spaces.medium))
+
+        TextButton(
+            onClick = {
+                keyboardController?.hide()
+                onLoginAction(LoginActions.OnRedirectAction(Routes.FORGOT_PASSWORD_ROUTE.name))
+
+            }
+        ) {
+            Text(stringResource(Res.string.vila_app_forgot_pass_button))
+        }
     }
-}
-
-private fun LoginUiState.isLoading() = this is LoginUiState.Loading
-
-private fun checkLogin(email: String, password: String) =
-    email.trim().isNotEmpty() && password.trim().isNotEmpty()
-
-@Composable
-@Preview
-private fun LoginScreenPreview() {
-    LoginContent()
 }

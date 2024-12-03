@@ -11,7 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.gitpush.vilapp.core.domain.Routes
 import br.com.gitpush.vilapp.home.presentation.HomeScreen
-import br.com.gitpush.vilapp.login.presentation.LoginScreen
+import br.com.gitpush.vilapp.login.presentation.LoginScreenRoute
 
 @Composable
 fun Navigator(
@@ -25,10 +25,13 @@ fun Navigator(
         modifier = modifier.fillMaxSize().padding(innerPadding)
     ) {
         composable(route = Routes.LOGIN_ROUTE.name) {
-            LoginScreen()
+            LoginScreenRoute()
         }
         composable(route = Routes.HOME_ROUTE.name) {
             HomeScreen()
+        }
+        composable(route = Routes.FORGOT_PASSWORD_ROUTE.name) {
+
         }
     }
 }
