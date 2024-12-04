@@ -117,7 +117,6 @@ fun LoginScreen(
             onClick = {
                 keyboardController?.hide()
                 onLoginAction(LoginActions.OnRedirectAction(Routes.FORGOT_PASSWORD_ROUTE.name))
-
             }
         ) {
             Text(stringResource(Res.string.vila_app_forgot_pass_button))
