@@ -9,11 +9,18 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.com.gitpush.vilapp.core.data.HttpClientFactory
 import br.com.gitpush.vilapp.home.presentation.HomeScreen
+import br.com.gitpush.vilapp.login.data.api.RemoteLoginDataSourceImpl
+import br.com.gitpush.vilapp.login.data.repository.LoginRepositoryImpl
+import br.com.gitpush.vilapp.login.domain.LoginRepository
 import br.com.gitpush.vilapp.login.presentation.LoginScreenRoute
+import br.com.gitpush.vilapp.login.presentation.LoginViewModel
+import io.ktor.client.engine.HttpClientEngine
 
 @Composable
 fun Navigator(
+    engine: HttpClientEngine,
     modifier: Modifier = Modifier,
     innerPadding: PaddingValues = PaddingValues(),
     navController: NavHostController = rememberNavController()
@@ -24,7 +31,15 @@ fun Navigator(
         modifier = modifier.fillMaxSize().padding(innerPadding)
     ) {
         composable(route = Routes.LOGIN_ROUTE.name) {
-            LoginScreenRoute {
+            LoginScreenRoute(
+                viewModel = LoginViewModel(
+                    repository = LoginRepositoryImpl(
+                        dataSource = RemoteLoginDataSourceImpl(
+                            httpClient = HttpClientFactory.create(engine)
+                        )
+                    )
+                )
+            ) {
                 navController.navigate(it) {
                     popUpTo(Routes.LOGIN_ROUTE.name) {
                         inclusive = true
