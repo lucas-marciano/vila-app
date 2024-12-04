@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.home.presentation
+package br.com.gitpush.vilapp.features.home.presentation
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

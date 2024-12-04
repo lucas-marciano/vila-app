@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.login.domain
+package br.com.gitpush.vilapp.features.login.domain
 
 data class LoginData(
     var id: String = "",

@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.login.presentation
+package br.com.gitpush.vilapp.features.login.presentation
 
 sealed interface LoginActions {
     data class OnFilledEmail(val email: String) : LoginActions

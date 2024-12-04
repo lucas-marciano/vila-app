@@ -10,12 +10,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.gitpush.vilapp.core.data.HttpClientFactory
-import br.com.gitpush.vilapp.home.presentation.HomeScreen
-import br.com.gitpush.vilapp.login.data.api.RemoteLoginDataSourceImpl
-import br.com.gitpush.vilapp.login.data.repository.LoginRepositoryImpl
-import br.com.gitpush.vilapp.login.domain.LoginRepository
-import br.com.gitpush.vilapp.login.presentation.LoginScreenRoute
-import br.com.gitpush.vilapp.login.presentation.LoginViewModel
+import br.com.gitpush.vilapp.features.home.presentation.HomeScreen
+import br.com.gitpush.vilapp.features.login.data.api.RemoteLoginDataSourceImpl
+import br.com.gitpush.vilapp.features.login.data.repository.LoginRepositoryImpl
+import br.com.gitpush.vilapp.features.login.domain.LoginRepository
+import br.com.gitpush.vilapp.features.login.presentation.LoginScreenRoute
+import br.com.gitpush.vilapp.features.login.presentation.LoginViewModel
 import io.ktor.client.engine.HttpClientEngine
 
 @Composable

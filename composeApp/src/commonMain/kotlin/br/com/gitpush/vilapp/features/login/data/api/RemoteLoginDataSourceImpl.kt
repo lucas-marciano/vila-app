@@ -1,9 +1,9 @@
-package br.com.gitpush.vilapp.login.data.api
+package br.com.gitpush.vilapp.features.login.data.api
 
 import br.com.gitpush.vilapp.core.data.safeCall
 import br.com.gitpush.vilapp.core.domain.Result
 import br.com.gitpush.vilapp.core.domain.errors.DataError
-import br.com.gitpush.vilapp.login.data.dto.LoginDataDto
+import br.com.gitpush.vilapp.features.login.data.dto.LoginDataDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.post
 

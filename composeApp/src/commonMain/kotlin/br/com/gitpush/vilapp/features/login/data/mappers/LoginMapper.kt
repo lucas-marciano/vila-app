@@ -1,7 +1,7 @@
-package br.com.gitpush.vilapp.login.data.mappers
+package br.com.gitpush.vilapp.features.login.data.mappers
 
-import br.com.gitpush.vilapp.login.data.dto.LoginDataDto
-import br.com.gitpush.vilapp.login.domain.LoginData
+import br.com.gitpush.vilapp.features.login.data.dto.LoginDataDto
+import br.com.gitpush.vilapp.features.login.domain.LoginData
 
 fun LoginDataDto.toLoginData(): LoginData {
     return LoginData(

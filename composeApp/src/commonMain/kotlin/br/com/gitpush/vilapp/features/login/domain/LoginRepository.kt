@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.login.domain
+package br.com.gitpush.vilapp.features.login.domain
 
 import br.com.gitpush.vilapp.core.domain.Result
 import br.com.gitpush.vilapp.core.domain.errors.DataError

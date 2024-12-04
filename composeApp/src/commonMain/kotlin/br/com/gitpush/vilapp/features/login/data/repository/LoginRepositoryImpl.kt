@@ -1,12 +1,12 @@
-package br.com.gitpush.vilapp.login.data.repository
+package br.com.gitpush.vilapp.features.login.data.repository
 
 import br.com.gitpush.vilapp.core.domain.Result
 import br.com.gitpush.vilapp.core.domain.errors.DataError
 import br.com.gitpush.vilapp.core.domain.map
-import br.com.gitpush.vilapp.login.domain.LoginData
-import br.com.gitpush.vilapp.login.data.api.RemoteLoginDataSource
-import br.com.gitpush.vilapp.login.data.mappers.toLoginData
-import br.com.gitpush.vilapp.login.domain.LoginRepository
+import br.com.gitpush.vilapp.features.login.domain.LoginData
+import br.com.gitpush.vilapp.features.login.data.api.RemoteLoginDataSource
+import br.com.gitpush.vilapp.features.login.data.mappers.toLoginData
+import br.com.gitpush.vilapp.features.login.domain.LoginRepository
 
 class LoginRepositoryImpl(
     private val dataSource: RemoteLoginDataSource

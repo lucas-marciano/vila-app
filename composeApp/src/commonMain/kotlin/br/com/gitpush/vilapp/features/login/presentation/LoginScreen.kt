@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.login.presentation
+package br.com.gitpush.vilapp.features.login.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.login.data.dto
+package br.com.gitpush.vilapp.features.login.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

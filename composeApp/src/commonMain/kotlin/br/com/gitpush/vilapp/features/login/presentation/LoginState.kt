@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.login.presentation
+package br.com.gitpush.vilapp.features.login.presentation
 
 import br.com.gitpush.vilapp.core.presentation.UiText
 
