@@ -8,11 +8,13 @@
     <string name="vila_app_field_empty_error">Os campos são obrigatórios</string>
     <string name="vila_app_forgot_pass_button">Esqueci minha senha</string>
     <string name="vila_app_login_title">Login</string>
+    <string name="vila_app_recovery_button">Recuperar senha</string>
 
-    <string name="error_disk_full">Oops, it seems like your disk is full.</string>
-    <string name="error_unknown">Oops, something went wrong.</string>
-    <string name="error_request_timeout">The request timed out.</string>
-    <string name="error_no_internet">Couldn't reach server, please check your internet connection.</string>
-    <string name="error_too_many_requests">Your quota seems to be exceeded.</string>
-    <string name="error_serialization">Couldn't parse data.</string>
+    <!-- ERROS -->
+    <string name="error_disk_full">Sem espaço de disco disponível.</string>
+    <string name="error_unknown">Tivemos um erro inesperado.</string>
+    <string name="error_request_timeout">Timeout de requisição.</string>
+    <string name="error_no_internet">Sem conexão com a internet.</string>
+    <string name="error_too_many_requests">Erro de acessos repetitivos.</string>
+    <string name="error_serialization">Erro ao fazer o parse dos dados.</string>
 </resources>

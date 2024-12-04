@@ -2,10 +2,7 @@ package br.com.gitpush.vilapp.features.login.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.gitpush.vilapp.core.domain.onError
-import br.com.gitpush.vilapp.core.domain.onSuccess
 import br.com.gitpush.vilapp.core.presentation.UiText
-import br.com.gitpush.vilapp.core.presentation.toUiText
 import br.com.gitpush.vilapp.features.login.domain.LoginRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -60,7 +57,6 @@ class LoginViewModel(
             }
         }
     }
-
 
     private fun login(email: String, password: String) = viewModelScope.launch {
         delay(3000)
