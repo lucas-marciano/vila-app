@@ -19,7 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import br.com.gitpush.vilapp.core.domain.Routes
+import br.com.gitpush.vilapp.core.presentation.Routes
 import br.com.gitpush.vilapp.ui.components.buttons.LoadingButton
 import br.com.gitpush.vilapp.ui.components.textfields.MainTextFieldEmail
 import br.com.gitpush.vilapp.ui.components.textfields.MainTextFieldPassword

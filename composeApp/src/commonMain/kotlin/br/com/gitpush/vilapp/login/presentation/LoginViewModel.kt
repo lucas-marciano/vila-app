@@ -2,8 +2,11 @@ package br.com.gitpush.vilapp.login.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.gitpush.vilapp.core.domain.onError
+import br.com.gitpush.vilapp.core.domain.onSuccess
 import br.com.gitpush.vilapp.core.presentation.UiText
-import br.com.gitpush.vilapp.login.data.LoginRepository
+import br.com.gitpush.vilapp.core.presentation.toUiText
+import br.com.gitpush.vilapp.login.domain.LoginRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,7 +26,7 @@ class LoginViewModel(
         when (action) {
             is LoginActions.OnLoginAction -> {
                 _state.update { it.copy(inLoading = true) }
-                login()
+                login(state.value.emailField, state.value.passwordField)
             }
 
             is LoginActions.OnFilledEmail -> {
@@ -59,31 +62,35 @@ class LoginViewModel(
     }
 
 
-    private fun login() {
-        viewModelScope.launch {
-            delay(3000)
-            if (_state.value.checkFields()) {
-                _state.update {
-                    it.copy(
-                        inLoading = false,
-                        errorMessage = UiText.StringResourceId(Res.string.vila_app_field_empty_error)
-                    )
-                }
-            } else {
-                _state.update {
-                    it.copy(
-                        inLoading = false,
-                        success = true
-                    )
-                }
+    private fun login(email: String, password: String) = viewModelScope.launch {
+        delay(3000)
+        if (_state.value.checkFields()) {
+            _state.update {
+                it.copy(
+                    inLoading = false,
+                    errorMessage = UiText.StringResourceId(Res.string.vila_app_field_empty_error)
+                )
             }
-//                val response = repository.logIn(filedEmail.value, filedPassword.value)
-//                response.collect {
-//
-//                }
-//            } else {
-//                state.value = LoginUiState.Error(ErrorFieldException("Preencha todos os campos"))
-//            }
+        } else {
+            repository
+                .logIn(email = email, password = password)
+                .onSuccess { result ->
+                    _state.update {
+                        it.copy(
+                            inLoading = false,
+                            errorMessage = null,
+                            success = result.email.isNotEmpty()
+                        )
+                    }
+                }
+                .onError { error ->
+                    _state.update {
+                        it.copy(
+                            inLoading = false,
+                            errorMessage = error.toUiText()
+                        )
+                    }
+                }
         }
     }
 }

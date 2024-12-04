@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.gitpush.vilapp.core.domain.Routes
 import br.com.gitpush.vilapp.home.presentation.HomeScreen
 import br.com.gitpush.vilapp.login.presentation.LoginScreenRoute
 

@@ -1,6 +1,6 @@
 package br.com.gitpush.vilapp.login.domain
 
-data class LoginResponse(
+data class LoginData(
     var id: String = "",
     var name: String = "",
     var email: String = "",
