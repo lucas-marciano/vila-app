@@ -20,7 +20,7 @@ fun MainButton(
     modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit = {},
-    enabled: Boolean = false,
+    enabled: Boolean = true,
 ) {
     Button(
         shape = VilaTheme.shapes.medium,

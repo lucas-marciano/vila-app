@@ -1,11 +1,12 @@
 package br.com.gitpush.vilapp
 
 import androidx.compose.ui.window.ComposeUIViewController
-import io.ktor.client.engine.darwin.Darwin
-import androidx.compose.runtime.remember
+import br.com.gitpush.vilapp.core.di.initKoin
 
-fun MainViewController() = ComposeUIViewController {
-    App(
-        engine = remember { Darwin.create() }
-    )
+fun MainViewController() = ComposeUIViewController(
+    configure = {
+        initKoin()
+    }
+) {
+    App()
 }
