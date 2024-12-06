@@ -9,10 +9,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.gitpush.vilapp.features.forgot_pass.presentation.ForgotPasswordRoute
+import br.com.gitpush.vilapp.features.login.presentation.forgot_pass.ForgotPassViewModel
+import br.com.gitpush.vilapp.features.login.presentation.forgot_pass.ForgotPasswordRoute
 import br.com.gitpush.vilapp.features.home.presentation.HomeScreen
-import br.com.gitpush.vilapp.features.login.presentation.LoginScreenRoute
-import br.com.gitpush.vilapp.features.login.presentation.LoginViewModel
+import br.com.gitpush.vilapp.features.login.presentation.acess.LoginScreenRoute
+import br.com.gitpush.vilapp.features.login.presentation.acess.LoginViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -44,7 +45,8 @@ fun Navigator(
             HomeScreen()
         }
         composable(route = Routes.FORGOT_PASSWORD_ROUTE.name) {
-            ForgotPasswordRoute()
+            val viewModel = koinViewModel<ForgotPassViewModel>()
+            ForgotPasswordRoute(viewModel = viewModel)
         }
     }
 }
