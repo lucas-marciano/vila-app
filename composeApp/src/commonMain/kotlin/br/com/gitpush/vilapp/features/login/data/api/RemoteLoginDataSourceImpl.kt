@@ -1,5 +1,6 @@
 package br.com.gitpush.vilapp.features.login.data.api
 
+import br.com.gitpush.vilapp.BASE_URL
 import br.com.gitpush.vilapp.core.data.safeCall
 import br.com.gitpush.vilapp.core.domain.Result
 import br.com.gitpush.vilapp.core.domain.errors.DataError
@@ -15,7 +16,7 @@ class RemoteLoginDataSourceImpl(
         password: String
     ): Result<LoginDataDto, DataError.Remote> {
         return safeCall {
-            httpClient.post("") {
+            httpClient.post("$BASE_URL/login") {
                 url {
                     parameters.append("email", email)
                     parameters.append("password", password)
@@ -28,9 +29,19 @@ class RemoteLoginDataSourceImpl(
         token: String
     ): Result<LoginDataDto, DataError.Remote> {
         return safeCall {
-            httpClient.post("") {
+            httpClient.post("$BASE_URL/check_user") {
                 url {
                     parameters.append("token", token)
+                }
+            }
+        }
+    }
+
+    override suspend fun recovery(email: String): Result<LoginDataDto, DataError.Remote> {
+        return safeCall {
+            httpClient.post("$BASE_URL/recovery") {
+                url {
+                    parameters.append("email", email)
                 }
             }
         }

@@ -7,6 +7,7 @@
     <string name="vila_app_login_button">Acessar</string>
     <string name="vila_app_field_empty_error">Os campos são obrigatórios</string>
     <string name="vila_app_forgot_pass_button">Esqueci minha senha</string>
+    <string name="vila_app_forgot_pass_title">recupere sua senha</string>
     <string name="vila_app_login_title">Login</string>
     <string name="vila_app_recovery_button">Recuperar senha</string>
 

@@ -1,6 +1,5 @@
-package br.com.gitpush.vilapp.features.login.presentation
+package br.com.gitpush.vilapp.features.login.presentation.acess
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,23 +14,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.gitpush.vilapp.core.presentation.Routes
 import br.com.gitpush.vilapp.ui.components.buttons.LoadingButton
+import br.com.gitpush.vilapp.ui.components.image.Logo
 import br.com.gitpush.vilapp.ui.components.textfields.MainTextFieldEmail
 import br.com.gitpush.vilapp.ui.components.textfields.MainTextFieldPassword
 import br.com.gitpush.vilapp.ui.theme.VilaTheme
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import vilapp.composeapp.generated.resources.Res
 import vilapp.composeapp.generated.resources.vila_app_forgot_pass_button
 import vilapp.composeapp.generated.resources.vila_app_login_button
-import vilapp.composeapp.generated.resources.vila_app_login_title
-import vilapp.composeapp.generated.resources.vila_app_main_logo
 
 @Composable
 fun LoginScreenRoute(
@@ -76,12 +71,10 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center
 
     ) {
-        Image(
-            modifier = Modifier.fillMaxWidth().size(250.dp),
-            alignment = Alignment.Center,
-            contentScale = ContentScale.Fit,
-            painter = painterResource(Res.drawable.vila_app_main_logo),
-            contentDescription = stringResource(Res.string.vila_app_login_title)
+        Logo(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(VilaTheme.spaces.imageSize)
         )
 
         MainTextFieldEmail(

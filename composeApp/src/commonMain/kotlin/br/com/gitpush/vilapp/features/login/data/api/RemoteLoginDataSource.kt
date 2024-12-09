@@ -7,4 +7,5 @@ import br.com.gitpush.vilapp.features.login.data.dto.LoginDataDto
 interface RemoteLoginDataSource {
     suspend fun logIn(email: String, password: String): Result<LoginDataDto, DataError.Remote>
     suspend fun checkLoggedUser(token: String): Result<LoginDataDto, DataError.Remote>
+    suspend fun recovery(email: String): Result<LoginDataDto, DataError.Remote>
 }

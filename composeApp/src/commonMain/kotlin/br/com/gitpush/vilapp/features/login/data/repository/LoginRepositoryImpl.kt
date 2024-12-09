@@ -22,7 +22,9 @@ class LoginRepositoryImpl(
             }
     }
 
-    override suspend fun checkLoggedUser(token: String): Result<LoginData, DataError.Remote> {
+    override suspend fun checkLoggedUser(
+        token: String
+    ): Result<LoginData, DataError.Remote> {
         return dataSource
             .checkLoggedUser(token)
             .map {
@@ -30,4 +32,13 @@ class LoginRepositoryImpl(
             }
     }
 
+    override suspend fun recoveryPassword(
+        email: String
+    ): Result<LoginData, DataError.Remote> {
+        return dataSource
+            .recovery(email)
+            .map {
+                it.toLoginData()
+            }
+    }
 }
