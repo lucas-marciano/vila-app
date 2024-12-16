@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+    <string name="vila_app_name_app">VilaApp</string>
     <string name="vila_app_email_label">E-mail</string>
     <string name="vila_app_password_label">Senha</string>
     <string name="vila_app_a11y_hide_pass">Esconder senha</string>

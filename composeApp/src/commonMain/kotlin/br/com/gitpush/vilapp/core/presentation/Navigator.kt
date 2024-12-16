@@ -18,14 +18,12 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun Navigator(
-    modifier: Modifier = Modifier,
-    innerPadding: PaddingValues = PaddingValues(),
     navController: NavHostController = rememberNavController()
 ) {
     NavHost(
         navController = navController,
         startDestination = Routes.LOGIN_ROUTE.name,
-        modifier = modifier.fillMaxSize().padding(innerPadding)
+        modifier = Modifier.fillMaxSize()
     ) {
         composable(route = Routes.LOGIN_ROUTE.name) {
             val viewModel = koinViewModel<LoginViewModel>()
