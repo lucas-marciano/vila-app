@@ -10,4 +10,5 @@ data class CustomShapes(
     val small: Shape = RoundedCornerShape(4.dp),
     val medium: Shape = RoundedCornerShape(8.dp),
     val large: Shape = RoundedCornerShape(12.dp),
+    val full: Shape = RoundedCornerShape(50.dp),
 )

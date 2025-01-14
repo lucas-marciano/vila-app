@@ -1,19 +1,18 @@
 package br.com.gitpush.vilapp.core.presentation
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.gitpush.vilapp.features.login.presentation.forgot_pass.ForgotPassViewModel
-import br.com.gitpush.vilapp.features.login.presentation.forgot_pass.ForgotPasswordRoute
-import br.com.gitpush.vilapp.features.home.presentation.HomeScreen
+import br.com.gitpush.vilapp.features.home.presentation.HomeRoute
+import br.com.gitpush.vilapp.features.home.presentation.HomeViewModel
 import br.com.gitpush.vilapp.features.login.presentation.acess.LoginScreenRoute
 import br.com.gitpush.vilapp.features.login.presentation.acess.LoginViewModel
+import br.com.gitpush.vilapp.features.login.presentation.forgot_pass.ForgotPassViewModel
+import br.com.gitpush.vilapp.features.login.presentation.forgot_pass.ForgotPasswordRoute
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -40,7 +39,8 @@ fun Navigator(
             }
         }
         composable(route = Routes.HOME_ROUTE.name) {
-            HomeScreen()
+            val viewModel = koinViewModel<HomeViewModel>()
+            HomeRoute(viewModel)
         }
         composable(route = Routes.FORGOT_PASSWORD_ROUTE.name) {
             val viewModel = koinViewModel<ForgotPassViewModel>()

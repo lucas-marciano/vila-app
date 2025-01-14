@@ -19,4 +19,7 @@
     <string name="error_no_internet">Sem conexão com a internet.</string>
     <string name="error_too_many_requests">Erro de acessos repetitivos.</string>
     <string name="error_serialization">Erro ao fazer o parse dos dados.</string>
+
+    <!-- a18y -->
+    <string name="vila_app_message_exit_app">Deseja sair do aplicativo?</string>
 </resources>

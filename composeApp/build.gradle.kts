@@ -95,6 +95,7 @@ android {
 }
 
 dependencies {
+    testImplementation(libs.junit.jupiter)
     debugImplementation(compose.uiTooling)
 }
 
