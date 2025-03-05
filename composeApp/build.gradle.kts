@@ -18,16 +18,16 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
 
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        instrumentedTestVariant {
-            sourceSetTree.set(KotlinSourceSetTree.test)
-
-            dependencies {
-                implementation(libs.core.ktx)
-                implementation(libs.compose.ui.test.junit4.android)
-                debugImplementation(libs.compose.ui.test.manifest)
-            }
-        }
+//        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+//        instrumentedTestVariant {
+//            sourceSetTree.set(KotlinSourceSetTree.test)
+//
+//            dependencies {
+//                implementation(libs.core.ktx)
+//                implementation(libs.compose.ui.test.junit4.android)
+//                debugImplementation(libs.compose.ui.test.manifest)
+//            }
+//        }
     }
 
     listOf(
@@ -75,13 +75,13 @@ kotlin {
             implementation(libs.bundles.ktor)
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
-            implementation(libs.kotlin.test.junit)
-            implementation(kotlin("test-annotations-common"))
-            implementation(libs.assertk)
-
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
+//            implementation(libs.kotlin.test)
+//            implementation(libs.kotlin.test.junit)
+//            implementation(kotlin("test-annotations-common"))
+//            implementation(libs.assertk)
+//
+//            @OptIn(ExperimentalComposeLibrary::class)
+//            implementation(compose.uiTest)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -119,4 +119,3 @@ android {
 dependencies {
     debugImplementation(compose.uiTooling)
 }
-

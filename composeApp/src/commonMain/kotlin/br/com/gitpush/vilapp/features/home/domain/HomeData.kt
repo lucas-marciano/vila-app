@@ -5,4 +5,6 @@ data class HomeData(
     val user: String = "",
     val function: String = "",
     val list: List<HomeMenus> = emptyList(),
+    val agenda: List<ListData> = emptyList(),
+    val warnings: List<ListData> = emptyList(),
 )

@@ -35,8 +35,7 @@ fun MainCardHome(
     condominiumName: String,
 ) {
     Card(
-        modifier = modifier.fillMaxWidth().background(color = VilaTheme.colors.primary),
-        shape = VilaTheme.shapes.small,
+        modifier = modifier.fillMaxWidth(),
         colors = CardColors(
             containerColor = VilaTheme.colors.primary,
             contentColor = VilaTheme.colors.onPrimary,
@@ -45,30 +44,23 @@ fun MainCardHome(
         )
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(VilaTheme.spaces.small)
+            modifier = Modifier.padding(8.dp),
+            verticalArrangement = Arrangement.spacedBy(VilaTheme.spaces.small),
         ) {
             Text(
+                modifier = Modifier.padding(start = 16.dp, top = 8.dp),
                 text = condominiumName,
                 color = VilaTheme.colors.onPrimary,
                 style = VilaTheme.typography.h1
             )
 
             Row(
-                modifier = Modifier.padding(VilaTheme.spaces.medium),
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp),
                 horizontalArrangement = Arrangement.spacedBy(VilaTheme.spaces.large),
             ) {
-                Icon(
-                    modifier = Modifier.background(
-                        shape = VilaTheme.shapes.full, color = Color.Red
-                    ),
-                    imageVector = Icons.Filled.Home,
-                    contentDescription = null,
-                    tint = Color.White
-                )
 
                 Image(
-                    modifier = Modifier.size(100.dp)
-                        .background(shape = VilaTheme.shapes.full, color = Color.Gray),
+                    modifier = Modifier.size(40.dp),
                     alignment = Alignment.Center,
                     contentScale = ContentScale.Fit,
                     painter = painterResource(Res.drawable.vila_app_ic_home_withe),

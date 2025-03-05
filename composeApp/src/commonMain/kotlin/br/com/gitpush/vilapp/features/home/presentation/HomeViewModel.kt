@@ -6,6 +6,7 @@ import br.com.gitpush.vilapp.core.presentation.BaseViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.gitpush.vilapp.features.home.domain.HomeData
 import br.com.gitpush.vilapp.features.home.domain.HomeMenus
+import br.com.gitpush.vilapp.features.home.domain.ListData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -28,11 +29,19 @@ class HomeViewModel : BaseViewModel<HomeContract.Event, HomeContract.State, Home
         function = "Morador",
         user = "Lucas Marciano",
         list = listOf(
-            HomeMenus("item 1", Icons.Default.Home),
-            HomeMenus("item 2", Icons.Default.Home),
-            HomeMenus("item 3", Icons.Default.Home),
-            HomeMenus("item 4", Icons.Default.Home),
-            HomeMenus("item 5", Icons.Default.Home),
+            HomeMenus(1, "item 1", Icons.Default.Home),
+            HomeMenus(2, "item 2", Icons.Default.Home),
+            HomeMenus(3, "item 3", Icons.Default.Home),
+            HomeMenus(4, "item 4", Icons.Default.Home),
+            HomeMenus(5, "item 5", Icons.Default.Home),
+        ),
+        agenda = listOf(
+            ListData(1, "Agenda 1"),
+            ListData(2, "Agenda 2"),
+        ),
+        warnings = listOf(
+            ListData(1, "Aviso 1"),
+            ListData(2, "Aviso 2"),
         )
     )
 

@@ -21,7 +21,7 @@ fun Navigator(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Routes.LOGIN_ROUTE.name,
+        startDestination = Routes.HOME_ROUTE.name,
         modifier = Modifier.fillMaxSize()
     ) {
         composable(route = Routes.LOGIN_ROUTE.name) {

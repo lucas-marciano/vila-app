@@ -11,6 +11,9 @@
     <string name="vila_app_forgot_pass_title">recupere sua senha</string>
     <string name="vila_app_login_title">Login</string>
     <string name="vila_app_recovery_button">Recuperar senha</string>
+    <string name="vila_app_label_agenda">Agendamentos</string>
+    <string name="vila_app_label_warning">Avisos</string>
+    <string name="vila_app_label_agendas">Agendas</string>
 
     <!-- ERROS -->
     <string name="error_disk_full">Sem espaço de disco disponível.</string>
