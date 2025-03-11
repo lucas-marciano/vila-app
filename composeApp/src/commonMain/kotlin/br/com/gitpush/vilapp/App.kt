@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import br.com.gitpush.vilapp.core.presentation.Navigator
+import br.com.gitpush.vilapp.core.routing.Navigator
 import br.com.gitpush.vilapp.ui.theme.VilaTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 

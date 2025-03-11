@@ -16,7 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import br.com.gitpush.vilapp.core.presentation.Routes
+import br.com.gitpush.vilapp.core.routing.ForgotPassword
+import br.com.gitpush.vilapp.core.routing.Home
 import br.com.gitpush.vilapp.ui.components.buttons.LoadingButton
 import br.com.gitpush.vilapp.ui.components.image.Logo
 import br.com.gitpush.vilapp.ui.components.textfields.MainTextFieldEmail
@@ -38,7 +39,7 @@ fun LoginScreenRoute(
     if (state.success) {
         // salvar informacoes antes de ir para home
         // usar algo pro token e pros dados dos cliente logado
-        onRedirectAction(Routes.HOME_ROUTE.name)
+        onRedirectAction(Home.toString())
     }
 
     LoginScreen(
@@ -109,7 +110,7 @@ fun LoginScreen(
         TextButton(
             onClick = {
                 keyboardController?.hide()
-                onLoginAction(LoginActions.OnRedirectAction(Routes.FORGOT_PASSWORD_ROUTE.name))
+                onLoginAction(LoginActions.OnRedirectAction(ForgotPassword.toString()))
             }
         ) {
             Text(stringResource(Res.string.vila_app_forgot_pass_button))

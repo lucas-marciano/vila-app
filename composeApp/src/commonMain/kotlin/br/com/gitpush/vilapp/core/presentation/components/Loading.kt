@@ -1,4 +1,4 @@
-package br.com.gitpush.vilapp.features.home.presentation.components
+package br.com.gitpush.vilapp.core.presentation.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
